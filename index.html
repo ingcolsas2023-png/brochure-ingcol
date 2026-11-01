@@ -47,7 +47,9 @@ header { display: flex; align-items: center; justify-content: space-between; gap
 .pildora img { width: 118px; height: auto; display: block; }
 .marca { text-align: right; display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 .marca b { font-size: 11px; font-weight: 600; letter-spacing: .22em; color: var(--orange); }
-.marca span { font-size: 12.5px; color: var(--ink); }
+.marca .lema { font-size: 12.5px; color: var(--ink); }
+.vig { align-self: flex-end; font-size: 12px; font-weight: 600; color: var(--white); border: 1px solid rgba(255, 127, 4, .8); border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+.vig.vencida { background: var(--error); border-color: var(--error); }
 
 .escenario { position: relative; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
 .libro { position: relative; perspective: 4200px; }
@@ -121,6 +123,56 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
 .panel .aviso-datos { font-size: 12px; text-align: center; }
 .correo-texto { color: var(--navy); font-weight: 600; user-select: text; -webkit-user-select: text; overflow-wrap: anywhere; }
 @media (max-width: 420px) { .envios { grid-template-columns: 1fr; } }
+.boton[aria-disabled="true"] { opacity: .65; pointer-events: none; }
+.panel .exito { margin: 0; padding: 12px 14px; border-radius: 12px; background: #E6F4EA; color: #14532D; font-size: 14px; font-weight: 500; text-align: center; }
+.trampa { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+/* calculadora de materiales y Club del Maestro */
+.extras { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.boton.terciario { min-height: 42px; border-radius: 12px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.3); color: var(--white); font-size: 14px; }
+.boton.terciario svg { color: var(--orange); flex-shrink: 0; }
+.modo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.op { position: relative; display: block; }
+.op input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.op span { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 6px 8px; border: 1.5px solid var(--sheet-line); border-radius: 10px;
+  font: 500 13.5px/1.2 var(--font); color: var(--sheet-ink); text-align: center; cursor: pointer; }
+.op input:checked + span { border-color: var(--navy); background: #E8EEF4; color: var(--navy); font-weight: 600; }
+.op input:focus-visible + span { outline: 3px solid var(--orange); outline-offset: 2px; }
+.fila2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+.mezclas { border: 0; margin: 0; padding: 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.mezclas legend { padding: 0; margin-bottom: 8px; font-size: 13px; font-weight: 600; color: var(--navy); }
+.mezcla { position: relative; display: flex; flex-direction: column; gap: 3px; padding: 12px 14px 12px 44px; border: 1.5px solid var(--sheet-line); border-radius: 12px; cursor: pointer; }
+.mezcla input { position: absolute; left: 14px; top: 15px; width: 18px; height: 18px; margin: 0; accent-color: var(--navy); }
+.mezcla:has(input:checked) { border-color: var(--navy); background: #EEF3F8; box-shadow: inset 0 0 0 1px var(--navy); }
+.mezcla input:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+.mz-cab { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.mz-cab b { font-size: 15px; font-weight: 600; color: var(--navy); }
+.mz-cab i { font-style: normal; font-size: 13px; font-weight: 700; color: #B4520C; background: #FFF1E3; border-radius: 999px; padding: 1px 9px; flex-shrink: 0; }
+.mz-uso { font-size: 13px; line-height: 1.35; color: var(--sheet-ink); }
+.mz-dosis { font-size: 12.5px; line-height: 1.4; color: var(--sheet-muted); }
+.panel h2:focus { outline: none; }
+.check { display: flex; align-items: center; gap: 10px; min-height: 36px; font-size: 14px; color: var(--sheet-ink); cursor: pointer; }
+.check input { width: 20px; height: 20px; margin: 0; accent-color: var(--navy); }
+.resultado { background: #F2F5F8; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.panel .resultado p { font-size: 13.5px; }
+.resultado p b { color: var(--navy); }
+.res-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 8px; }
+.res-item { background: var(--sheet); border-top: 3px solid var(--orange); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.res-item span { font-size: 12.5px; color: var(--sheet-muted); }
+.res-item b { font-size: 22px; font-weight: 700; line-height: 1.2; color: var(--navy); font-variant-numeric: tabular-nums; }
+.res-item small { font-size: 12px; line-height: 1.35; color: var(--sheet-muted); }
+.pasos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: paso; }
+.pasos li { counter-increment: paso; display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 12px; align-items: center; }
+.pasos li::before { content: counter(paso); grid-row: 1 / span 2; width: 32px; height: 32px; border-radius: 999px; background: var(--orange); color: var(--orange-ink);
+  font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; }
+.pasos b { font-size: 15px; font-weight: 600; color: var(--navy); }
+.pasos span { font-size: 13.5px; line-height: 1.45; color: var(--sheet-muted); }
+@media (max-height: 640px) { .boton.terciario { min-height: 38px; } }
+/* teléfonos angostos: con 5 páginas, el botón de pausa queda solo con su ícono (el texto sigue para lectores de pantalla) */
+@media (max-width: 420px) {
+  .controles { gap: 8px; } .contador { min-width: 0; } .ctrl { padding: 0 12px; }
+  #play-txt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
 
 /* protección: al salir de la página (otra app, otra ventana, herramienta de recorte) o al imprimir / guardar en PDF solo queda el azul de marca */
 .escudo { position: fixed; inset: 0; z-index: 100; background: var(--navy); }
@@ -132,7 +184,7 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
   body::after { content: ""; display: block; width: 100%; height: 100vh; background: #003256; }
 }
 @media (min-width: 700px) { .panel { left: 50%; right: auto; bottom: 50%; width: 560px; transform: translate(-50%, 50%); border-radius: 20px; } }
-@media (max-width: 420px) { .marca span { display: none; } }
+@media (max-width: 420px) { .marca .lema { display: none; } }
 @media (max-width: 380px) { .boton { font-size: 13.5px; } }
 @media (prefers-reduced-motion: reduce) { .aviso { transition: none; } }
 </style>
@@ -141,10 +193,10 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
 <div class="app">
   <header>
     <div class="pildora"><img src="logo.png" alt="INGCOL"></div>
-    <div class="marca"><b>BROCHURE 2026</b><span>Materiales pétreos y transporte de carga</span></div>
+    <div class="marca"><b>BROCHURE 2026</b><span class="vig" id="vigencia">Precios de esta semana</span><span class="lema">Materiales pétreos y transporte de carga</span></div>
   </header>
 
-  <div class="escenario" id="escenario" aria-roledescription="libro" aria-label="Brochure de INGCOL, 4 páginas">
+  <div class="escenario" id="escenario" aria-roledescription="libro" aria-label="Brochure de INGCOL, 5 páginas">
     <button class="flecha izq" id="ant" type="button" aria-label="Página anterior">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
     </button>
@@ -165,11 +217,22 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
 
   <div class="controles">
     <div class="puntos" id="puntos"></div>
-    <div class="contador" id="contador" aria-live="polite">Página 1 de 4</div>
+    <div class="contador" id="contador" aria-live="polite">Página 1 de 5</div>
     <button class="ctrl" id="play" type="button" aria-pressed="true">
       <svg id="ico-pausa" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="4" width="5" height="16" rx="1"></rect><rect x="14" y="4" width="5" height="16" rx="1"></rect></svg>
       <svg id="ico-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5Z"></path></svg>
       <span id="play-txt">Pausar</span>
+    </button>
+  </div>
+
+  <div class="extras">
+    <button class="boton terciario" id="abrir-calc" type="button" aria-haspopup="dialog" aria-controls="panel-calc">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"></rect><path d="M8.5 6.5h7v3h-7z"></path><path d="M8.5 13.5h.01M12 13.5h.01M15.5 13.5h.01M8.5 17.5h.01M12 17.5h.01M15.5 17.5h.01"></path></svg>
+      Calcular material
+    </button>
+    <button class="boton terciario" id="abrir-club" type="button" aria-haspopup="dialog" aria-controls="panel-club">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18"></path><path d="M5 18v-2.5a7 7 0 0 1 14 0V18"></path><path d="M10 9.2V5.5a2 2 0 0 1 4 0v3.7"></path></svg>
+      Club del Maestro
     </button>
   </div>
 
@@ -198,7 +261,7 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
     <p>Llene los datos y envíelos a INGCOL por WhatsApp o por correo; el mensaje sale listo. Solo el nombre es obligatorio.</p>
     <form id="form" novalidate>
       <div class="campo"><label for="c-nombre">Nombre o empresa</label><input id="c-nombre" name="nombre" autocomplete="organization" required></div>
-      <div class="campo"><label for="c-contacto">Teléfono o correo para responderle</label><input id="c-contacto" name="contacto" autocomplete="email" placeholder="Opcional"></div>
+      <div class="campo"><label for="c-contacto">Teléfono o correo para responderle</label><input id="c-contacto" name="contacto" autocomplete="email" placeholder="Ej. 300 123 4567 o correo@empresa.com"></div>
       <div class="campo"><label for="c-que">¿Qué necesita?</label>
         <select id="c-que" name="que">
           <option>Arena de río</option>
@@ -222,6 +285,8 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
       </div>
       <div class="campo"><label for="c-fecha">¿Para cuándo?</label><input id="c-fecha" name="fecha" type="date"></div>
       <div class="campo"><label for="c-nota">Comentarios</label><textarea id="c-nota" name="nota" rows="2" placeholder="Opcional"></textarea></div>
+      <div class="campo"><label for="c-codigo">Código de maestro (opcional)</label><input id="c-codigo" name="codigo" autocomplete="off" placeholder="Si un maestro le recomendó INGCOL"></div>
+      <div class="trampa" aria-hidden="true"><label for="c-web">No llene este campo</label><input id="c-web" name="web" tabindex="-1" autocomplete="off"></div>
       <p class="error" id="error" role="alert" hidden>Escriba su nombre o el de su empresa.</p>
       <div class="envios">
         <a class="boton principal" id="enviar" href="#" target="_blank" rel="noopener">
@@ -230,11 +295,96 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
         </a>
         <a class="boton correo" id="enviar-correo" href="#">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3.5 6.5 8.5 6.5 8.5-6.5"></path></svg>
-          Enviar por correo
+          <span id="correo-txt">Enviar por correo</span>
         </a>
       </div>
+      <p class="exito" id="exito" role="status" hidden>¡Listo! Su solicitud llegó a INGCOL. Le responderemos pronto.</p>
       <p class="aviso-datos">Sus datos solo se usan para responder esta cotización.</p>
       <div class="directo">O escríbanos directo: WhatsApp <a id="directo" href="https://wa.me/573114885119" target="_blank" rel="noopener">311 488 5119</a> · correo <span class="correo-texto">gerencia.ingcolsas@gmail.com</span></div>
+    </form>
+  </div>
+</section>
+
+<section class="panel" id="panel-calc" role="dialog" aria-modal="true" aria-labelledby="calc-titulo" hidden>
+  <div class="panel-in">
+    <div class="panel-cab">
+      <h2 id="calc-titulo" tabindex="-1">Calculadora de materiales</h2>
+      <button class="cerrar" type="button" aria-label="Cerrar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+      </button>
+    </div>
+    <p>Elija la mezcla, escriba las medidas y le decimos cuánta arena, triturado y cemento necesita. Son cantidades de referencia: confírmelas con su ingeniero o maestro.</p>
+    <form id="f-calc" novalidate>
+      <fieldset class="mezclas">
+        <legend>Mezcla y dosificación por m³</legend>
+        <label class="mezcla"><input type="radio" name="k-mezcla" id="k-m-3000" value="c3000" checked>
+          <span class="mz-cab"><b>Concreto de 3.000 psi</b><i>1:2:3</i></span>
+          <span class="mz-uso">Estructural: placas, vigas, columnas y zapatas</span>
+          <span class="mz-dosis">7 bultos de cemento · 0,56 m³ de arena · 0,84 m³ de triturado · 180 L de agua</span>
+        </label>
+        <label class="mezcla"><input type="radio" name="k-mezcla" id="k-m-4000" value="c4000">
+          <span class="mz-cab"><b>Concreto de 4.000 psi</b><i>1:2:2</i></span>
+          <span class="mz-uso">Estructural de mayor exigencia: edificios, tanques y losas de carga</span>
+          <span class="mz-dosis">8,4 bultos de cemento · 0,67 m³ de arena · 0,67 m³ de triturado · 190 L de agua</span>
+        </label>
+        <label class="mezcla"><input type="radio" name="k-mezcla" id="k-m-panete" value="panete">
+          <span class="mz-cab"><b>Mortero para pañete</b><i>1:4</i></span>
+          <span class="mz-uso">Pañetes y revoques de muros</span>
+          <span class="mz-dosis">7,3 bultos de cemento · 1,16 m³ de arena · 240 L de agua</span>
+        </label>
+      </fieldset>
+      <div class="modo" role="radiogroup" aria-label="Cómo quiere medir">
+        <label class="op"><input type="radio" name="k-modo" id="k-modo-area" value="area" checked><span>Área y espesor</span></label>
+        <label class="op"><input type="radio" name="k-modo" id="k-modo-elem" value="elem"><span>Vigas y columnas</span></label>
+        <label class="op"><input type="radio" name="k-modo" id="k-modo-vol" value="vol"><span>Ya sé los m³</span></label>
+      </div>
+      <div class="fila2" id="k-por-area">
+        <div class="campo"><label for="k-area">Área (m²)</label><input id="k-area" type="text" inputmode="decimal" autocomplete="off" placeholder="Ej. 60"></div>
+        <div class="campo"><label for="k-esp">Espesor (cm)</label><input id="k-esp" type="text" inputmode="decimal" autocomplete="off" value="10"></div>
+      </div>
+      <div class="fila2" id="k-por-elem" hidden>
+        <div class="campo"><label for="k-cant">Cuántos</label><input id="k-cant" type="text" inputmode="numeric" autocomplete="off" placeholder="Ej. 8"></div>
+        <div class="campo"><label for="k-largo">Largo o altura (m)</label><input id="k-largo" type="text" inputmode="decimal" autocomplete="off" placeholder="Ej. 2,5"></div>
+        <div class="campo"><label for="k-lado1">Sección: lado 1 (cm)</label><input id="k-lado1" type="text" inputmode="decimal" autocomplete="off" placeholder="Ej. 30"></div>
+        <div class="campo"><label for="k-lado2">Sección: lado 2 (cm)</label><input id="k-lado2" type="text" inputmode="decimal" autocomplete="off" placeholder="Ej. 30"></div>
+      </div>
+      <div class="campo" id="k-por-vol" hidden><label for="k-vol">Volumen (m³)</label><input id="k-vol" type="text" inputmode="decimal" autocomplete="off" placeholder="Ej. 4,5"></div>
+      <label class="check" for="k-desp"><input type="checkbox" id="k-desp" checked> Sumar 5 % de desperdicio</label>
+      <div class="resultado" id="k-res" aria-live="polite"></div>
+      <div class="campo"><label for="k-lugar">¿Dónde es la obra?</label><input id="k-lugar" list="municipios" autocomplete="off" placeholder="Municipio y barrio"></div>
+      <div class="campo"><label for="k-codigo">Código de maestro (opcional)</label><input id="k-codigo" autocomplete="off" placeholder="Si un maestro le recomendó INGCOL"></div>
+      <a class="boton principal" id="k-pedir" href="#" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7Z"></path></svg>
+        Pedir este material por WhatsApp
+      </a>
+      <p class="aviso-datos">Mezclas hechas en obra y medidas por volumen. INGCOL suministra la arena y el triturado.</p>
+    </form>
+  </div>
+</section>
+
+<section class="panel" id="panel-club" role="dialog" aria-modal="true" aria-labelledby="club-titulo" hidden>
+  <div class="panel-in">
+    <div class="panel-cab">
+      <h2 id="club-titulo">Club del Maestro INGCOL</h2>
+      <button class="cerrar" type="button" aria-label="Cerrar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+      </button>
+    </div>
+    <p>Para maestros de obra que recomiendan buen material. Inscribirse es gratis.</p>
+    <ol class="pasos">
+      <li><b>Inscríbase por WhatsApp</b><span>Con su nombre y la zona donde trabaja.</span></li>
+      <li><b>Reciba su código de maestro</b><span>Se lo enviamos por WhatsApp.</span></li>
+      <li><b>Gane su bono</b><span>Sus clientes piden con su código y usted recibe un bono por cada viaje pagado.</span></li>
+    </ol>
+    <form id="f-club" novalidate>
+      <div class="campo"><label for="m-nombre">Nombre completo</label><input id="m-nombre" autocomplete="name" required></div>
+      <div class="campo"><label for="m-zona">Municipio o barrio donde trabaja</label><input id="m-zona" list="municipios" autocomplete="off" placeholder="Ej. Maicao"></div>
+      <p class="error" id="m-error" role="alert" hidden>Escriba su nombre.</p>
+      <a class="boton principal" id="m-enviar" href="#" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7Z"></path></svg>
+        Inscribirme por WhatsApp
+      </a>
+      <p class="aviso-datos">El valor del bono se lo confirmamos al inscribirse.</p>
     </form>
   </div>
 </section>
@@ -249,13 +399,31 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
     { src: 'p1.jpg', alt: 'Página 1, portada: una mano muestra arena de río de grano fino. Materiales pétreos y transporte de carga. Arena de río, triturados, granulares y volquetas doble troque de 15 m³ para su obra en La Guajira. Cotice por WhatsApp al 311 488 5119.' },
     { src: 'p2.jpg', alt: 'Página 2, servicios: suministro de materiales, transporte en volqueta doble troque de 15 m³ y alquiler de maquinaria amarilla (retrocargador y minicargador).' },
     { src: 'p3.jpg', alt: 'Página 3, catálogo y tarifas 2026: precios por m³ de arena, triturado, base y subbase granular y afirmado; transporte a $680 por m³-km.' },
-    { src: 'p4.jpg', alt: 'Página 4: cargue mecánico con retrocargador y despacho en volquetas a su obra en La Guajira, mapa de rutas desde Riohacha y usos de la arena de río.' }
+    { src: 'club.jpg', alt: 'Página 4, Club del Maestro y calculadora: los maestros de obra se inscriben por WhatsApp, reciben su código y ganan un bono por cada viaje pagado que pidan sus clientes con ese código. La calculadora dice cuánta arena y triturado necesita una obra; ejemplo: placa de 60 m² y 10 cm, 3,6 m³ de arena, 5,3 m³ de triturado y 45 bultos de cemento.' },
+    { src: 'p4.jpg', alt: 'Página 5: cargue mecánico con retrocargador y despacho en volquetas a su obra en La Guajira, mapa de rutas desde Riohacha y usos de la arena de río.' }
   ];
   const N = PAGINAS.length, DUR = 900, ESPERA = 4500;
+
+  // vigencia de los precios de la página 3: la pone la administración cada semana (vigencia.json + scripts/vigencia.py).
+  // Se muestra arriba y va en cada mensaje de WhatsApp; si ya pasó, el aviso queda en rojo y pide la lista vigente.
+  const VIGENCIA = {"desde": "2026-11-02", "hasta": "2026-11-08"};
+  const MESES = ['ene.', 'feb.', 'mar.', 'abr.', 'may.', 'jun.', 'jul.', 'ago.', 'sep.', 'oct.', 'nov.', 'dic.'];
+  const fecha = (iso) => { const [a, m, d] = iso.split('-').map(Number); return { a, m, d }; };
+  const dma = (iso) => { const f = fecha(iso); return String(f.d).padStart(2, '0') + '/' + String(f.m).padStart(2, '0') + '/' + f.a; };
+  const vencida = Date.now() > Date.parse(VIGENCIA.hasta + 'T23:59:59-05:00');  // hora de Colombia
+  function lineaVigencia() { return 'Precios del brochure vigentes del ' + dma(VIGENCIA.desde) + ' al ' + dma(VIGENCIA.hasta) + (vencida ? ' (ya vencidos)' : ''); }
+  (function avisoVigencia() {
+    const a = fecha(VIGENCIA.desde), b = fecha(VIGENCIA.hasta), el = document.getElementById('vigencia');
+    const rango = a.m === b.m ? a.d + ' al ' + b.d + ' ' + MESES[b.m - 1] : a.d + ' ' + MESES[a.m - 1] + ' al ' + b.d + ' ' + MESES[b.m - 1];
+    el.textContent = vencida ? 'Precios vencidos el ' + b.d + ' ' + MESES[b.m - 1] : 'Precios del ' + rango;
+    el.title = vencida ? 'La lista de precios de la página 3 venció. Pida la cotización vigente por WhatsApp.' : 'Precios válidos solo en estas fechas; se actualizan cada semana.';
+    el.classList.toggle('vencida', vencida);
+  })();
   const $ = (id) => document.getElementById(id);
   const libro = $('libro'), vuelta = $('vuelta'), imgBase = $('img-base'), imgVuelta = $('img-vuelta');
   const sinMovimiento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let actual = 0, animando = false, auto = !sinMovimiento, temporizador = null;
+  let abierto = null, volverA = null;  // hoja abierta: cotizar, calculadora o club
 
   PAGINAS.forEach((p) => { const im = new Image(); im.src = p.src; });
 
@@ -297,10 +465,43 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
     });
     vid.addEventListener('seeked', mostrarVivo);
     document.addEventListener('visibilitychange', actualizarVivo);
-    vid.preload = 'auto'; vid.src = VIVO.video;
+  }
+  // si el enlace abre directo una hoja (#cotizar, #calculadora o #club), el video espera a que se cierre: así carga más rápido
+  let videoPedido = false;
+  function iniciarVideo() { if (!conVideo || videoPedido) return; videoPedido = true; vid.preload = 'auto'; vid.src = VIVO.video; }
+  const VISTAS = ['cotizar', 'calculadora', 'club'], inicial = location.hash.slice(1);
+  if (VISTAS.indexOf(inicial) < 0) iniciarVideo();
+
+  // registro anónimo en la hoja privada de INGCOL (Google): cuántas personas abren el brochure, qué páginas ven y qué botones usan.
+  // No guarda quién mira: solo un número al azar por visita, el tipo de equipo y de dónde llegó. Vacío = no registra (versión de Claude).
+  const REGISTRO = '';
+  const visita = (() => {
+    const nueva = () => (Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2)).slice(0, 10);
+    try { let v = sessionStorage.getItem('ingcol_visita'); if (!v) { v = nueva(); sessionStorage.setItem('ingcol_visita', v); } return v; } catch (e) { return nueva(); }
+  })();
+  const equipo = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ? 'celular' : 'computador';
+  const origen = (() => {
+    const r = (document.referrer || '').toLowerCase(), ua = navigator.userAgent;
+    if (r.includes('whatsapp') || /[?&](wa|whatsapp)(=|&|$)/i.test(location.search)) return 'whatsapp';
+    if (r.includes('facebook') || /FBAN|FBAV/.test(ua)) return 'facebook';
+    if (r.includes('instagram') || /Instagram/.test(ua)) return 'instagram';
+    if (r.includes('google.')) return 'google';
+    if (!r || r.includes(location.hostname)) return 'directo';
+    return 'otro';
+  })();
+  const contados = new Set();
+  function registrar(evento, pagina) {
+    if (!REGISTRO) return;
+    const clave = evento + (pagina || '');
+    if (contados.has(clave)) return;  // cada cosa cuenta una vez por visita
+    contados.add(clave);
+    const datos = JSON.stringify({ tipo: 'evento', evento, pagina: pagina || actual + 1, sesion: visita, equipo, origen });
+    try {
+      if (!(navigator.sendBeacon && navigator.sendBeacon(REGISTRO, datos))) fetch(REGISTRO, { method: 'POST', body: datos, mode: 'no-cors', keepalive: true }).catch(() => {});
+    } catch (e) { /* sin registro no pasa nada */ }
   }
 
-  const texto = 'Brochure de INGCOL S.A.S. ZOMAC: arena de río, triturados, granulares y volquetas doble troque de 15 m³ en La Guajira. Véalo y cotice aquí: ' + ENLACE;
+  const texto = 'Brochure de INGCOL S.A.S. ZOMAC: arena de río, triturados, granulares y volquetas doble troque de 15 m³ en La Guajira. Véalo y cotice aquí: ' + ENLACE + (ENLACE.includes('?') ? '&' : '?') + 'wa';  // ?wa: la visita se cuenta como llegada desde WhatsApp
   $('compartir').href = 'https://wa.me/?text=' + encodeURIComponent(texto);
 
   function medir() {
@@ -323,6 +524,7 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
     $('contador').textContent = 'Página ' + (actual + 1) + ' de ' + N;
     $('ant').disabled = actual === 0; $('sig').disabled = actual === N - 1 && !auto;
     actualizarVivo();
+    if (actual > 0) registrar('pagina', actual + 1);
   }
   const suave = (x) => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
   function sombreado(av) {
@@ -361,7 +563,7 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
   // pasa solo, como un video; se pausa cuando la persona toca
   function programar() {
     clearTimeout(temporizador);
-    if (!auto || !$('panel').hidden) return;
+    if (!auto || abierto) return;
     const espera = actual === N - 1 ? ESPERA + 1500 : (actual === 0 && conVideo ? ESPERA_PORTADA : ESPERA);
     temporizador = setTimeout(() => { if (actual < N - 1) siguiente(); else pasar(0); }, espera);
   }
@@ -390,8 +592,8 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
   });
 
   // formulario de cotización: arma el mensaje de WhatsApp mientras se escribe
-  const campos = ['c-nombre', 'c-que', 'c-cant', 'c-unidad', 'c-obra', 'c-fecha', 'c-nota', 'c-contacto'].map($);
-  const [fNombre, fQue, fCant, fUnidad, fObra, fFecha, fNota, fContacto] = campos;
+  const campos = ['c-nombre', 'c-que', 'c-cant', 'c-unidad', 'c-obra', 'c-fecha', 'c-nota', 'c-contacto', 'c-codigo'].map($);
+  const [fNombre, fQue, fCant, fUnidad, fObra, fFecha, fNota, fContacto, fCodigo] = campos;
   function unidadSugerida() {
     const q = fQue.value;
     fUnidad.value = q.startsWith('Transporte') ? 'viajes' : q.startsWith('Alquiler') ? 'horas' : 'm³';
@@ -405,6 +607,8 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
     if (fNombre.value.trim()) l.push('• Nombre o empresa: ' + fNombre.value.trim());
     if (fContacto.value.trim()) l.push('• Contacto: ' + fContacto.value.trim());
     if (fNota.value.trim()) l.push('• Comentarios: ' + fNota.value.trim());
+    if (fCodigo.value.trim()) l.push('• Código de maestro: ' + fCodigo.value.trim());
+    l.push('• ' + lineaVigencia());
     l.push('(Desde el brochure 2026)');
     return l.join('\n');
   }
@@ -414,33 +618,162 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
     $('enviar').href = 'https://wa.me/' + TEL + '?text=' + encodeURIComponent(m);
     $('enviar-correo').href = 'mailto:' + CORREO + '?subject=' + encodeURIComponent(asunto()) + '&body=' + encodeURIComponent(m);
   }
+  const btnCorreo = $('enviar-correo'), txtCorreo = $('correo-txt'), exito = $('exito');
   fQue.addEventListener('change', () => { unidadSugerida(); actualizar(); });
   campos.forEach((c) => c.addEventListener('input', () => {
     actualizar();
-    if (c === fNombre && fNombre.value.trim()) { $('error').hidden = true; fNombre.removeAttribute('aria-invalid'); }
+    if (c.value.trim() && c.getAttribute('aria-invalid')) { $('error').hidden = true; c.removeAttribute('aria-invalid'); }
+    if (!exito.hidden) { exito.hidden = true; btnCorreo.removeAttribute('aria-disabled'); txtCorreo.textContent = 'Enviar por correo'; }
   }));
+  function errorForm(texto, campo) {
+    $('error').textContent = texto; $('error').hidden = false; campo.setAttribute('aria-invalid', 'true'); campo.focus();
+  }
   function validar(e) {
     actualizar();
-    if (!fNombre.value.trim()) { e.preventDefault(); $('error').hidden = false; fNombre.setAttribute('aria-invalid', 'true'); fNombre.focus(); return false; }
+    if (!fNombre.value.trim()) { e.preventDefault(); errorForm('Escriba su nombre o el de su empresa.', fNombre); return false; }
     return true;
   }
-  $('enviar').addEventListener('click', validar);
-  $('enviar-correo').addEventListener('click', validar);
+  $('enviar').addEventListener('click', (e) => { if (validar(e)) registrar('whatsapp'); });
+  // correo: va directo al buzón de INGCOL (sin abrir el correo del cliente); si no se puede, se abre su app de correo con el mensaje listo
+  let enviandoCorreo = false;
+  btnCorreo.addEventListener('click', async (e) => {
+    if (!validar(e) || !REGISTRO) return;
+    e.preventDefault();
+    if (enviandoCorreo) return;
+    if (!fContacto.value.trim()) { errorForm('Escriba un teléfono o correo para responderle.', fContacto); return; }
+    enviandoCorreo = true; btnCorreo.setAttribute('aria-disabled', 'true'); txtCorreo.textContent = 'Enviando…';
+    const control = new AbortController(), limite = setTimeout(() => control.abort(), 20000);
+    try {
+      const r = await fetch(REGISTRO, {
+        method: 'POST', signal: control.signal,
+        body: JSON.stringify({ tipo: 'cotizacion', sesion: visita, nombre: fNombre.value, contacto: fContacto.value, que: fQue.value,
+          cantidad: fCant.value, unidad: fUnidad.value, obra: fObra.value, fecha: fechaBonita(fFecha.value),
+          nota: fNota.value + (fCodigo.value.trim() ? (fNota.value.trim() ? ' · ' : '') + 'Código de maestro: ' + fCodigo.value.trim() : ''), web: $('c-web').value })
+      });
+      const j = await r.json();
+      if (!j.ok) throw new Error(j.error || 'sin confirmar');
+      registrar('correo');
+      exito.hidden = false; txtCorreo.textContent = 'Enviado';
+    } catch (err) {
+      btnCorreo.removeAttribute('aria-disabled'); txtCorreo.textContent = 'Enviar por correo';
+      location.href = btnCorreo.href;
+    } finally { clearTimeout(limite); enviandoCorreo = false; }
+  });
   $('form').addEventListener('submit', (e) => { e.preventDefault(); $('enviar').click(); });
   $('directo').href = 'https://wa.me/' + TEL + '?text=' + encodeURIComponent('Hola INGCOL, vi su brochure y quiero cotizar material para mi obra.');
+  $('directo').addEventListener('click', () => registrar('directo'));
+  $('compartir').addEventListener('click', () => registrar('compartir'));
 
-  let volverA = null;
-  function abrir() {
-    volverA = document.activeElement; pausar();
-    $('velo').hidden = false; $('panel').hidden = false; actualizar();
-    setTimeout(() => fNombre.focus(), 30);
+  // calculadora de materiales: dosificación de referencia por m³ de las 3 mezclas más usadas, hechas en obra y medidas por volumen
+  // (tabla clásica: concreto 1:2:3 y 1:2:2, mortero 1:4; cemento en bultos de 50 kg). Los mismos valores salen en la página 4.
+  const MEZCLAS = {
+    c3000: { nombre: 'Concreto de 3.000 psi (21 MPa)', que: 'Concreto', prop: '1:2:3', cemento: 7, arena: 0.56, triturado: 0.84, agua: 180, esp: 10 },
+    c4000: { nombre: 'Concreto de 4.000 psi (28 MPa)', que: 'Concreto', prop: '1:2:2', cemento: 8.4, arena: 0.67, triturado: 0.67, agua: 190, esp: 10 },
+    panete: { nombre: 'Mortero para pañete', que: 'Mortero', prop: '1:4', cemento: 7.28, arena: 1.16, agua: 240, esp: 1.5 }
+  };
+  const kArea = $('k-area'), kEsp = $('k-esp'), kVol = $('k-vol'), kCant = $('k-cant'), kLargo = $('k-largo'), kLado1 = $('k-lado1'), kLado2 = $('k-lado2');
+  const kDesp = $('k-desp'), kLugar = $('k-lugar'), kCodigo = $('k-codigo'), kPedir = $('k-pedir');
+  const leer = (el) => { const n = parseFloat(String(el.value || '').replace(/\s/g, '').replace(',', '.')); return isFinite(n) && n > 0 ? n : 0; };
+  const arriba = (x) => Math.ceil(x * 10 - 1e-9) / 10;  // hacia arriba a 0,1 m³, para no quedarse corto
+  const m3 = (x) => x.toLocaleString('es-CO', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const corto = (x) => x.toLocaleString('es-CO', { maximumFractionDigits: 2 });
+  const viajes = (x) => { const v = Math.ceil(x / 15 - 1e-9); return v === 1 ? '1 viaje de volqueta' : v + ' viajes de volqueta'; };
+  const elegido = (nombre, def) => { const r = document.querySelector('input[name="' + nombre + '"]:checked'); return r ? r.value : def; };
+  let espTocado = false, calculo = null;
+  function calcular() {
+    const m = MEZCLAS[elegido('k-mezcla', 'c3000')] || MEZCLAS.c3000, modo = elegido('k-modo', 'area');
+    $('k-por-area').hidden = modo !== 'area'; $('k-por-elem').hidden = modo !== 'elem'; $('k-por-vol').hidden = modo !== 'vol';
+    let neto = 0, medida = '';
+    if (modo === 'area') {
+      const a = leer(kArea), e = leer(kEsp); neto = a * e / 100; medida = corto(a) + ' m² × ' + corto(e) + ' cm';
+    } else if (modo === 'elem') {
+      const n = Math.round(leer(kCant)) || 1, l = leer(kLargo), a = leer(kLado1), b = leer(kLado2);
+      neto = n * l * a * b / 10000; medida = n + (n === 1 ? ' elemento' : ' elementos') + ' de ' + corto(l) + ' m, sección ' + corto(a) + ' × ' + corto(b) + ' cm';
+    } else { neto = leer(kVol); medida = corto(neto) + ' m³'; }
+    if (!neto) {
+      calculo = null; kPedir.setAttribute('aria-disabled', 'true'); kPedir.href = '#';
+      $('k-res').innerHTML = '<p>' + (modo === 'area' ? 'Escriba el área y el espesor' : modo === 'elem' ? 'Escriba el largo y los dos lados de la sección' : 'Escriba los m³') + ' para ver cuánto material necesita.</p>';
+      return;
+    }
+    const vol = neto * (kDesp.checked ? 1.05 : 1), items = [{ nombre: 'Arena de río', cant: arriba(vol * m.arena) }];
+    if (m.triturado) items.push({ nombre: 'Triturado', cant: arriba(vol * m.triturado) });
+    const bultos = Math.ceil(vol * m.cemento - 1e-9), litros = Math.ceil(vol * m.agua / 10 - 1e-9) * 10;
+    calculo = { m, medida, items };
+    let h = '<p>' + m.que + ': <b>' + m3(arriba(vol)) + ' m³</b>' + (kDesp.checked ? ', con 5 % de desperdicio' : '') + '</p><div class="res-items">';
+    items.forEach((it) => { h += '<div class="res-item"><span>' + it.nombre + '</span><b>' + m3(it.cant) + ' m³</b><small>' + viajes(it.cant) + '</small></div>'; });
+    h += '</div><p>Cemento: <b>' + bultos + ' bultos</b> de 50 kg y unos <b>' + litros.toLocaleString('es-CO') + ' litros</b> de agua. El cemento se consigue aparte.</p>';
+    $('k-res').innerHTML = h;
+    kPedir.removeAttribute('aria-disabled');
+    kPedir.href = 'https://wa.me/' + TEL + '?text=' + encodeURIComponent(mensajeCalc());
   }
-  function cerrar() { $('velo').hidden = true; $('panel').hidden = true; if (volverA && volverA.focus) volverA.focus(); }
-  $('abrir-cotizar').addEventListener('click', abrir);
-  $('cerrar').addEventListener('click', cerrar);
+  function mensajeCalc() {
+    const c = calculo, l = ['Hola INGCOL, calculé mi obra en el brochure:', '• Mezcla: ' + c.m.nombre + ', ' + c.m.prop, '• Medidas: ' + c.medida];
+    c.items.forEach((it) => l.push('• ' + it.nombre + ': ' + m3(it.cant) + ' m³'));
+    if (kLugar.value.trim()) l.push('• Lugar de la obra: ' + kLugar.value.trim());
+    if (kCodigo.value.trim()) l.push('• Código de maestro: ' + kCodigo.value.trim());
+    l.push('• ' + lineaVigencia());
+    l.push('¿Me cotizan la entrega?');
+    return l.join('\n');
+  }
+  document.querySelectorAll('input[name="k-mezcla"]').forEach((r) => r.addEventListener('change', () => {
+    if (!espTocado) kEsp.value = corto(MEZCLAS[elegido('k-mezcla', 'c3000')].esp);
+    calcular();
+  }));
+  document.querySelectorAll('input[name="k-modo"]').forEach((r) => r.addEventListener('change', calcular));
+  kEsp.addEventListener('input', () => { espTocado = true; });
+  [kArea, kEsp, kVol, kCant, kLargo, kLado1, kLado2, kLugar, kCodigo].forEach((el) => el.addEventListener('input', calcular));
+  kDesp.addEventListener('change', calcular);
+  kPedir.addEventListener('click', (e) => { if (!calculo) { e.preventDefault(); return; } registrar('calculadora-whatsapp'); });
+  $('f-calc').addEventListener('submit', (e) => { e.preventDefault(); if (calculo) kPedir.click(); });
+
+  // Club del Maestro: la inscripción sale por WhatsApp; INGCOL le responde con su código de maestro
+  const mNombre = $('m-nombre'), mZona = $('m-zona'), mEnviar = $('m-enviar');
+  function actualizarClub() {
+    const l = ['Hola INGCOL, quiero inscribirme en el Club del Maestro.'];
+    if (mNombre.value.trim()) l.push('• Nombre: ' + mNombre.value.trim());
+    if (mZona.value.trim()) l.push('• Zona donde trabajo: ' + mZona.value.trim());
+    l.push('(Desde el brochure 2026)');
+    mEnviar.href = 'https://wa.me/' + TEL + '?text=' + encodeURIComponent(l.join('\n'));
+  }
+  [mNombre, mZona].forEach((el) => el.addEventListener('input', () => {
+    actualizarClub();
+    if (mNombre.value.trim()) { $('m-error').hidden = true; mNombre.removeAttribute('aria-invalid'); }
+  }));
+  mEnviar.addEventListener('click', (e) => {
+    actualizarClub();
+    if (!mNombre.value.trim()) { e.preventDefault(); $('m-error').hidden = false; mNombre.setAttribute('aria-invalid', 'true'); mNombre.focus(); return; }
+    registrar('club-whatsapp');
+  });
+  $('f-club').addEventListener('submit', (e) => { e.preventDefault(); mEnviar.click(); });
+
+  // tres hojas: cotización, calculadora y club; cada una con su enlace directo (#cotizar, #calculadora, #club) para QR y publicaciones
+  const PANELES = { cotizar: $('panel'), calculadora: $('panel-calc'), club: $('panel-club') };
+  const PRIMERO = { cotizar: fNombre, calculadora: $('calc-titulo'), club: mNombre };
+  function abrir(nombre) {
+    if (!PANELES[nombre]) return;
+    if (abierto && abierto !== nombre) PANELES[abierto].hidden = true;
+    if (!abierto) volverA = document.activeElement;
+    abierto = nombre; pausar(); registrar(nombre);
+    $('velo').hidden = false; PANELES[nombre].hidden = false; PANELES[nombre].scrollTop = 0;
+    if (nombre === 'cotizar') actualizar(); else if (nombre === 'calculadora') calcular(); else actualizarClub();
+    try { if (location.hash !== '#' + nombre) history.replaceState(null, '', '#' + nombre); } catch (e) { /* sin historial */ }
+    setTimeout(() => PRIMERO[nombre].focus(), 30);
+  }
+  function cerrar() {
+    if (!abierto) return;
+    PANELES[abierto].hidden = true; $('velo').hidden = true; abierto = null;
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { /* sin historial */ }
+    iniciarVideo(); actualizarVivo();
+    if (volverA && volverA.focus) volverA.focus();
+  }
+  $('abrir-cotizar').addEventListener('click', () => abrir('cotizar'));
+  $('abrir-calc').addEventListener('click', () => abrir('calculadora'));
+  $('abrir-club').addEventListener('click', () => abrir('club'));
+  document.querySelectorAll('.panel .cerrar').forEach((b) => b.addEventListener('click', cerrar));
   $('velo').addEventListener('click', cerrar);
+  window.addEventListener('hashchange', () => { const h = location.hash.slice(1); if (PANELES[h]) abrir(h); else if (!h) cerrar(); });
   document.addEventListener('keydown', (e) => {
-    if (!$('panel').hidden) { if (e.key === 'Escape') cerrar(); return; }
+    if (abierto) { if (e.key === 'Escape') cerrar(); return; }
     if (e.key === 'ArrowRight') { pausar(); siguiente(); }
     else if (e.key === 'ArrowLeft') { pausar(); anterior(); }
   });
@@ -459,7 +792,9 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
   $('escenario').addEventListener('dragstart', (e) => e.preventDefault());
 
   setTimeout(() => { $('aviso').dataset.oculto = 'false'; setTimeout(() => { $('aviso').dataset.oculto = 'true'; }, 3200); }, 1200);
-  pintar(); estadoPlay(); programar(); unidadSugerida(); actualizar();
+  registrar('vista');
+  pintar(); estadoPlay(); programar(); unidadSugerida(); actualizar(); calcular(); actualizarClub();
+  if (VISTAS.indexOf(inicial) >= 0) abrir(inicial);
 })();
 </script>
 </body>

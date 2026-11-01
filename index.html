@@ -129,8 +129,11 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
 
 /* calculadora de materiales y Club del Maestro */
 .extras { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.boton.terciario { min-height: 42px; border-radius: 12px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.3); color: var(--white); font-size: 14px; }
-.boton.terciario svg { color: var(--orange); flex-shrink: 0; }
+/* calculadora y Club del Maestro: gris claro para que se distingan del naranja de cotizar y del borde blanco de compartir */
+.boton.terciario { min-height: 44px; border-radius: 12px; background: #DFE6ED; border: 0; color: var(--navy); font-size: 14px; box-shadow: 0 2px 0 rgba(0, 10, 20, .3); }
+.boton.terciario svg { color: #D96500; flex-shrink: 0; }
+.boton.terciario:hover { background: #EAF0F5; }
+.boton.terciario:active { background: #CBD5DF; box-shadow: none; }
 .modo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .op { position: relative; display: block; }
 .op input { position: absolute; opacity: 0; width: 1px; height: 1px; }

@@ -151,6 +151,16 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
 .mz-uso { font-size: 13px; line-height: 1.35; color: var(--sheet-ink); }
 .mz-dosis { font-size: 12.5px; line-height: 1.4; color: var(--sheet-muted); }
 .panel h2:focus { outline: none; }
+.ubicar { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; margin-top: 4px; padding: 6px 14px; border: 1.5px solid var(--sheet-line); border-radius: 999px;
+  background: var(--sheet); color: var(--navy); font: 600 13.5px/1.2 var(--font); cursor: pointer; }
+.ubicar svg { color: var(--orange); flex-shrink: 0; }
+.ubicar[aria-disabled="true"] { opacity: .6; pointer-events: none; }
+.ubicar:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+.panel .ayuda { margin: 2px 0 0; font-size: 12.5px; }
+.tarjeta-club { display: flex; justify-content: center; padding: 26px 0 8px; }
+.lema-calc { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; background: #FFF1E3; color: var(--navy); }
+.lema-calc span { width: 40px; height: 40px; flex-shrink: 0; border-radius: 999px; background: var(--orange); display: flex; align-items: center; justify-content: center; }
+.lema-calc b { font-size: 15px; font-weight: 600; line-height: 1.3; }
 .check { display: flex; align-items: center; gap: 10px; min-height: 36px; font-size: 14px; color: var(--sheet-ink); cursor: pointer; }
 .check input { width: 20px; height: 20px; margin: 0; accent-color: var(--navy); }
 .resultado { background: #F2F5F8; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
@@ -196,7 +206,7 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
     <div class="marca"><b>BROCHURE 2026</b><span class="vig" id="vigencia">Precios de esta semana</span><span class="lema">Materiales pétreos y transporte de carga</span></div>
   </header>
 
-  <div class="escenario" id="escenario" aria-roledescription="libro" aria-label="Brochure de INGCOL, 5 páginas">
+  <div class="escenario" id="escenario" aria-roledescription="libro" aria-label="Brochure de INGCOL, 6 páginas">
     <button class="flecha izq" id="ant" type="button" aria-label="Página anterior">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
     </button>
@@ -217,7 +227,7 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
 
   <div class="controles">
     <div class="puntos" id="puntos"></div>
-    <div class="contador" id="contador" aria-live="polite">Página 1 de 5</div>
+    <div class="contador" id="contador" aria-live="polite">Página 1 de 6</div>
     <button class="ctrl" id="play" type="button" aria-pressed="true">
       <svg id="ico-pausa" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="4" width="5" height="16" rx="1"></rect><rect x="14" y="4" width="5" height="16" rx="1"></rect></svg>
       <svg id="ico-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5Z"></path></svg>
@@ -313,6 +323,7 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
       </button>
     </div>
+    <div class="lema-calc"><span aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1B0D00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block; flex-shrink: 0"><path d="M2.5 15.5V9h10l2 3.5h4.5l2.5 3v2h-2"/><path d="M12.5 9 11 5.5H3.5L2.5 9"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/><path d="M9 17.5h6"/></svg></span><b>Calculamos sus materiales y los llevamos a su obra</b></div>
     <p>Elija la mezcla, escriba las medidas y le decimos cuánta arena, triturado y cemento necesita. Son cantidades de referencia: confírmelas con su ingeniero o maestro.</p>
     <form id="f-calc" novalidate>
       <fieldset class="mezclas">
@@ -351,7 +362,8 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
       <div class="campo" id="k-por-vol" hidden><label for="k-vol">Volumen (m³)</label><input id="k-vol" type="text" inputmode="decimal" autocomplete="off" placeholder="Ej. 4,5"></div>
       <label class="check" for="k-desp"><input type="checkbox" id="k-desp" checked> Sumar 5 % de desperdicio</label>
       <div class="resultado" id="k-res" aria-live="polite"></div>
-      <div class="campo"><label for="k-lugar">¿Dónde es la obra?</label><input id="k-lugar" list="municipios" autocomplete="off" placeholder="Municipio y barrio"></div>
+      <div class="campo"><label for="k-lugar">¿Dónde es la obra?</label><input id="k-lugar" list="municipios" autocomplete="off" placeholder="Municipio, barrio o dirección">
+        <button class="ubicar" type="button" data-campo="k-lugar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>Usar la ubicación de mi celular</button><p class="ayuda" id="k-lugar-ayuda" hidden></p></div>
       <div class="campo"><label for="k-codigo">Código de maestro (opcional)</label><input id="k-codigo" autocomplete="off" placeholder="Si un maestro le recomendó INGCOL"></div>
       <a class="boton principal" id="k-pedir" href="#" target="_blank" rel="noopener">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7Z"></path></svg>
@@ -370,15 +382,43 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
       </button>
     </div>
-    <p>Para maestros de obra que recomiendan buen material. Inscribirse es gratis.</p>
+    <p>Para maestros de obra que recomiendan buen material: gane y asegure el material de su obra. Inscribirse es gratis.</p>
+    <div class="tarjeta-club" aria-hidden="true"><div style="position: relative; width: 340px; height: 214px; zoom: 0.8; transform: rotate(-5deg); flex-shrink: 0">
+<div style="position: absolute; inset: 0; border-radius: 18px; overflow: hidden; background: linear-gradient(135deg, #0B4E80 0%, #003256 52%, #001F36 100%); box-shadow: 0 22px 44px rgba(0, 25, 45, .38), 0 6px 14px rgba(0, 25, 45, .28); color: #FFFFFF">
+<div style="position: absolute; top: 0; bottom: 0; right: 30px; width: 7px; background: #FFFFFF; opacity: .92"></div>
+<div style="position: absolute; top: 0; bottom: 0; right: 10px; width: 16px; background: #FF7F04"></div>
+<div style="position: absolute; left: -50px; bottom: -90px; width: 240px; height: 240px; border-radius: 999px; background: rgba(255, 255, 255, .06)"></div>
+<div style="position: absolute; left: 22px; top: 20px; display: flex; align-items: center; gap: 10px">
+<span style="width: 38px; height: 38px; border-radius: 999px; background: #FF7F04; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#003256" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block; flex-shrink: 0"><path d="M3 18h18"/><path d="M5 18v-2.5a7 7 0 0 1 14 0V18"/><path d="M10 9.2V5.5a2 2 0 0 1 4 0v3.7"/></svg></span>
+<div style="display: flex; flex-direction: column; gap: 1px"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2.2px">CLUB DEL MAESTRO</span><span style="font-size: 10px; font-weight: 500; letter-spacing: 1.6px; color: #B9C7D6">INGCOL S.A.S. ZOMAC</span></div>
+</div>
+<div style="position: absolute; left: 24px; top: 80px; width: 44px; height: 33px; border-radius: 7px; background: linear-gradient(135deg, #FFDCA8, #F0A13C); box-shadow: inset 0 0 0 1px rgba(90, 45, 0, .25)">
+<div style="position: absolute; left: 15px; top: 0; bottom: 0; width: 1px; background: rgba(90, 45, 0, .3)"></div>
+<div style="position: absolute; left: 29px; top: 0; bottom: 0; width: 1px; background: rgba(90, 45, 0, .3)"></div>
+<div style="position: absolute; left: 0; right: 0; top: 16px; height: 1px; background: rgba(90, 45, 0, .3)"></div>
+</div>
+<div style="position: absolute; left: 24px; top: 126px; display: flex; flex-direction: column">
+<span style="font-size: 9.5px; font-weight: 500; letter-spacing: 1.8px; color: #B9C7D6">CÓDIGO DE MAESTRO</span>
+<span style="font-size: 23px; font-weight: 700; letter-spacing: 3px; line-height: 1.25">MAESTRO-007</span>
+</div>
+<div style="position: absolute; left: 24px; bottom: 15px; font-size: 11.5px; font-weight: 600; color: #FFB366">Bono por cada viaje pagado</div>
+</div>
+<div style="position: absolute; right: -24px; top: -26px; width: 86px; height: 86px; border-radius: 999px; background: #FF7F04; color: #1B0D00; border: 3px solid #FFFFFF; box-shadow: 0 8px 18px rgba(0, 25, 45, .3); display: flex; flex-direction: column; align-items: center; justify-content: center; transform: rotate(14deg)">
+<span style="font-size: 11px; font-weight: 700; letter-spacing: 1.2px; line-height: 1.1">GANE</span>
+<span style="font-size: 19px; font-weight: 700; line-height: 1.05">BONO</span>
+<span style="font-size: 9.5px; font-weight: 600; letter-spacing: .6px; line-height: 1.1">POR VIAJE</span>
+</div>
+</div></div>
     <ol class="pasos">
-      <li><b>Inscríbase por WhatsApp</b><span>Con su nombre y la zona donde trabaja.</span></li>
+      <li><b>Inscríbase por WhatsApp</b><span>Con su nombre, la zona donde trabaja y la dirección de su obra.</span></li>
       <li><b>Reciba su código de maestro</b><span>Se lo enviamos por WhatsApp.</span></li>
       <li><b>Gane su bono</b><span>Sus clientes piden con su código y usted recibe un bono por cada viaje pagado.</span></li>
     </ol>
     <form id="f-club" novalidate>
       <div class="campo"><label for="m-nombre">Nombre completo</label><input id="m-nombre" autocomplete="name" required></div>
       <div class="campo"><label for="m-zona">Municipio o barrio donde trabaja</label><input id="m-zona" list="municipios" autocomplete="off" placeholder="Ej. Maicao"></div>
+      <div class="campo"><label for="m-obra">Dirección o coordenadas de la obra (opcional)</label><input id="m-obra" autocomplete="off" placeholder="Ej. Calle 15 # 8-20, o 11.544400, -72.907200">
+        <button class="ubicar" type="button" data-campo="m-obra"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>Usar la ubicación de mi celular</button><p class="ayuda" id="m-obra-ayuda" hidden></p></div>
       <p class="error" id="m-error" role="alert" hidden>Escriba su nombre.</p>
       <a class="boton principal" id="m-enviar" href="#" target="_blank" rel="noopener">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7Z"></path></svg>
@@ -399,8 +439,9 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
     { src: 'p1.jpg', alt: 'Página 1, portada: una mano muestra arena de río de grano fino. Materiales pétreos y transporte de carga. Arena de río, triturados, granulares y volquetas doble troque de 15 m³ para su obra en La Guajira. Cotice por WhatsApp al 311 488 5119.' },
     { src: 'p2.jpg', alt: 'Página 2, servicios: suministro de materiales, transporte en volqueta doble troque de 15 m³ y alquiler de maquinaria amarilla (retrocargador y minicargador).' },
     { src: 'p3.jpg', alt: 'Página 3, catálogo y tarifas 2026: precios por m³ de arena, triturado, base y subbase granular y afirmado; transporte a $680 por m³-km.' },
-    { src: 'club.jpg', alt: 'Página 4, Club del Maestro y calculadora: los maestros de obra se inscriben por WhatsApp, reciben su código y ganan un bono por cada viaje pagado que pidan sus clientes con ese código. La calculadora dice cuánta arena y triturado necesita una obra; ejemplo: placa de 60 m² y 10 cm, 3,6 m³ de arena, 5,3 m³ de triturado y 45 bultos de cemento.' },
-    { src: 'p4.jpg', alt: 'Página 5: cargue mecánico con retrocargador y despacho en volquetas a su obra en La Guajira, mapa de rutas desde Riohacha y usos de la arena de río.' }
+    { src: 'club.jpg', alt: 'Página 4, Club del Maestro INGCOL: recomiende INGCOL y gane por cada viaje. Tarjeta de maestro con su código y bono por cada viaje pagado; se inscribe por WhatsApp escaneando el código QR o escribiendo al 311 488 5119.' },
+    { src: 'calc.jpg', alt: 'Página 5, calculadora de materiales: calculamos sus materiales y los llevamos a su obra. Celular con la calculadora y dosificación por m³ de concreto de 3.000 psi (1:2:3), de 4.000 psi (1:2:2) y mortero de pañete (1:4).' },
+    { src: 'p4.jpg', alt: 'Página 6: cargue mecánico con retrocargador y despacho en volquetas a su obra en La Guajira, mapa de rutas desde Riohacha y usos de la arena de río.' }
   ];
   const N = PAGINAS.length, DUR = 900, ESPERA = 4500;
 
@@ -664,6 +705,30 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
   $('directo').addEventListener('click', () => registrar('directo'));
   $('compartir').addEventListener('click', () => registrar('compartir'));
 
+  // ubicación de la obra: dirección escrita o coordenadas del celular, solo si la persona toca el botón; van en el mensaje que ella misma envía
+  const enlaceMapa = (txt) => {
+    const m = /(-?\d{1,2}\.\d{3,})\s*[,;]?\s*(-?\d{1,3}\.\d{3,})/.exec(txt || '');
+    if (!m) return '';
+    const la = parseFloat(m[1]), lo = parseFloat(m[2]);
+    return Math.abs(la) <= 90 && Math.abs(lo) <= 180 ? 'https://maps.google.com/?q=' + la.toFixed(6) + ',' + lo.toFixed(6) : '';
+  };
+  document.querySelectorAll('.ubicar').forEach((btn) => {
+    if (!('geolocation' in navigator)) { btn.hidden = true; return; }
+    btn.addEventListener('click', () => {
+      const campo = $(btn.dataset.campo), ayuda = $(btn.dataset.campo + '-ayuda');
+      btn.setAttribute('aria-disabled', 'true'); ayuda.hidden = false; ayuda.textContent = 'Buscando la ubicación…';
+      navigator.geolocation.getCurrentPosition((pos) => {
+        const t = pos.coords.latitude.toFixed(6) + ', ' + pos.coords.longitude.toFixed(6);
+        campo.value = campo.value.trim() && !enlaceMapa(campo.value) ? campo.value.trim() + ' (' + t + ')' : t;
+        ayuda.textContent = 'Listo: la ubicación va en el mensaje como enlace de Google Maps.';
+        btn.removeAttribute('aria-disabled'); campo.dispatchEvent(new Event('input', { bubbles: true }));
+      }, () => {
+        ayuda.textContent = 'No se pudo tomar la ubicación. Escriba la dirección de la obra.';
+        btn.removeAttribute('aria-disabled');
+      }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
+    });
+  });
+
   // calculadora de materiales: dosificación de referencia por m³ de las 3 mezclas más usadas, hechas en obra y medidas por volumen
   // (tabla clásica: concreto 1:2:3 y 1:2:2, mortero 1:4; cemento en bultos de 50 kg). Los mismos valores salen en la página 4.
   const MEZCLAS = {
@@ -709,7 +774,7 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
   function mensajeCalc() {
     const c = calculo, l = ['Hola INGCOL, calculé mi obra en el brochure:', '• Mezcla: ' + c.m.nombre + ', ' + c.m.prop, '• Medidas: ' + c.medida];
     c.items.forEach((it) => l.push('• ' + it.nombre + ': ' + m3(it.cant) + ' m³'));
-    if (kLugar.value.trim()) l.push('• Lugar de la obra: ' + kLugar.value.trim());
+    if (kLugar.value.trim()) { l.push('• Lugar de la obra: ' + kLugar.value.trim()); const u = enlaceMapa(kLugar.value); if (u) l.push('• Ubicación: ' + u); }
     if (kCodigo.value.trim()) l.push('• Código de maestro: ' + kCodigo.value.trim());
     l.push('• ' + lineaVigencia());
     l.push('¿Me cotizan la entrega?');
@@ -727,15 +792,16 @@ form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
   $('f-calc').addEventListener('submit', (e) => { e.preventDefault(); if (calculo) kPedir.click(); });
 
   // Club del Maestro: la inscripción sale por WhatsApp; INGCOL le responde con su código de maestro
-  const mNombre = $('m-nombre'), mZona = $('m-zona'), mEnviar = $('m-enviar');
+  const mNombre = $('m-nombre'), mZona = $('m-zona'), mObra = $('m-obra'), mEnviar = $('m-enviar');
   function actualizarClub() {
     const l = ['Hola INGCOL, quiero inscribirme en el Club del Maestro.'];
     if (mNombre.value.trim()) l.push('• Nombre: ' + mNombre.value.trim());
     if (mZona.value.trim()) l.push('• Zona donde trabajo: ' + mZona.value.trim());
+    if (mObra.value.trim()) { l.push('• Obra: ' + mObra.value.trim()); const u = enlaceMapa(mObra.value); if (u) l.push('• Ubicación de la obra: ' + u); }
     l.push('(Desde el brochure 2026)');
     mEnviar.href = 'https://wa.me/' + TEL + '?text=' + encodeURIComponent(l.join('\n'));
   }
-  [mNombre, mZona].forEach((el) => el.addEventListener('input', () => {
+  [mNombre, mZona, mObra].forEach((el) => el.addEventListener('input', () => {
     actualizarClub();
     if (mNombre.value.trim()) { $('m-error').hidden = true; mNombre.removeAttribute('aria-invalid'); }
   }));

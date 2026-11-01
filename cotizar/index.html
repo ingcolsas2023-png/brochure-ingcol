@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="INGCOL S.A.S. ZOMAC">
+<meta property="og:title" content="Cotice con INGCOL">
+<meta property="og:description" content="Cuéntenos qué necesita: material, volqueta o maquinaria para su obra en La Guajira. En un minuto queda su solicitud lista en WhatsApp.">
+<meta property="og:url" content="https://brochure-ingcol.onrender.com/cotizar/">
+<meta property="og:image" content="https://brochure-ingcol.onrender.com/og_cotizar.jpg?v=1">
+<meta property="og:image:secure_url" content="https://brochure-ingcol.onrender.com/og_cotizar.jpg?v=1">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Formulario de cotización de INGCOL: material, volqueta o maquinaria">
+<link rel="canonical" href="https://brochure-ingcol.onrender.com/cotizar/">
+<link rel="icon" href="../logo.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cotice con INGCOL</title>
+<meta name="description" content="Cuéntenos qué necesita: material, volqueta o maquinaria para su obra en La Guajira. En un minuto queda su solicitud lista en WhatsApp.">
+<meta name="theme-color" content="#003256">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+/* Formulario de cotización de INGCOL para compartir por WhatsApp: fondo azul de marca, tarjeta blanca, opciones grandes para el dedo. */
+:root {
+  --navy: #003256; --navy-deep: #00223b; --orange: #FF7F04; --orange-ink: #1b0d00;
+  --white: #FFFFFF; --ink-on-navy: #DCE6F0; --muted-on-navy: #A9BCCF;
+  --sheet: #FFFFFF; --ink: #1E2A36; --muted: #4D5B6A; --line: #C9D2DC; --chip: #F1F4F8; --error: #B42318;
+  --font: "Poppins", "Segoe UI", system-ui, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0; background: var(--navy); color: var(--white); font-family: var(--font);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.pagina { max-width: 640px; margin: 0 auto; padding-block: 18px 28px; display: flex; flex-direction: column; gap: 18px; }
+.cab { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.pildora { background: var(--white); border-radius: 999px; padding: 9px 16px; display: flex; align-items: center; }
+.pildora img { width: 118px; height: auto; display: block; }
+.cab b { font-size: 11px; font-weight: 600; letter-spacing: .22em; color: var(--orange); text-align: right; }
+.intro { display: flex; flex-direction: column; gap: 6px; }
+.intro h1 { margin: 0; font-size: 28px; line-height: 1.15; font-weight: 700; text-wrap: balance; }
+.intro p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink-on-navy); }
+
+.tarjeta { background: var(--sheet); color: var(--ink); border-radius: 20px; padding: 20px 18px; display: flex; flex-direction: column; gap: 22px;
+  box-shadow: 0 18px 44px rgba(0, 8, 16, .35); color-scheme: light; }
+.bloque { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.bloque h2 { margin: 0; font-size: 17px; font-weight: 600; color: var(--navy); display: flex; align-items: center; gap: 10px; }
+.bloque h2 i { font-style: normal; width: 28px; height: 28px; border-radius: 999px; background: var(--orange); color: var(--orange-ink);
+  font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.detalle { border-left: 3px solid var(--orange); padding-left: 12px; display: flex; flex-direction: column; gap: 12px; }
+.detalle h3 { margin: 0; font-size: 14px; font-weight: 600; color: var(--navy); letter-spacing: .02em; }
+
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+legend, .campo label { font-size: 13.5px; font-weight: 600; color: var(--navy); padding: 0; margin-bottom: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.chip span { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--line);
+  background: var(--chip); color: var(--ink); font-size: 14.5px; font-weight: 500; line-height: 1.2; cursor: pointer; user-select: none; }
+.chip span svg { flex-shrink: 0; }
+.chip input:checked + span { background: var(--navy); border-color: var(--navy); color: var(--white); }
+.chip input:focus-visible + span { outline: 3px solid var(--orange); outline-offset: 2px; }
+.chips.grandes .chip { flex: 1 1 180px; }
+.chips.grandes .chip span { width: 100%; min-height: 56px; border-radius: 14px; font-weight: 600; }
+
+.campo { display: flex; flex-direction: column; min-width: 0; }
+.campo input, .campo select, .campo textarea { width: 100%; min-height: 46px; border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px;
+  font: 400 15px/1.3 var(--font); color: var(--ink); background: var(--sheet); }
+.campo textarea { min-height: 76px; resize: vertical; }
+.campo input:focus, .campo select:focus, .campo textarea:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(0, 50, 86, .18); }
+[aria-invalid="true"] { border-color: var(--error) !important; }
+.fila { display: grid; grid-template-columns: minmax(0, 1fr) 128px; gap: 10px; }
+.dos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.ayuda { margin: 0; font-size: 12.5px; color: var(--muted); }
+
+.error { margin: 0; padding: 10px 12px; border-radius: 10px; background: #FDECEA; color: var(--error); font-size: 13.5px; font-weight: 500; }
+.envios { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.boton { min-height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 8px 12px;
+  font: 600 15px/1.2 var(--font); text-decoration: none; text-align: center; border: 0; cursor: pointer; }
+.boton.principal { background: var(--orange); color: var(--orange-ink); }
+.boton.correo { border: 1.5px solid var(--navy); color: var(--navy); background: var(--sheet); }
+.boton:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+.aviso-datos { margin: 0; font-size: 12px; text-align: center; color: var(--muted); }
+
+.pie { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 13px; line-height: 1.5; color: var(--muted-on-navy); text-align: center; }
+.pie b { color: var(--white); font-weight: 600; }
+.pie a { color: var(--white); font-weight: 600; }
+.pie span { user-select: text; -webkit-user-select: text; overflow-wrap: anywhere; }
+
+@media (max-width: 460px) { .envios, .dos { grid-template-columns: 1fr; } .intro h1 { font-size: 25px; } }
+@media (max-width: 380px) { .fila { grid-template-columns: minmax(0, 1fr) 104px; } .cab b { display: none; } }
+</style>
+</head>
+<body>
+<main class="pagina">
+  <header class="cab">
+    <div class="pildora"><img src="../logo.png" alt="INGCOL"></div>
+    <b>COTIZACIÓN</b>
+  </header>
+  <div class="intro">
+    <h1>Cuéntenos qué necesita para su obra</h1>
+    <p>Responda en un minuto y le enviamos la cotización. Al final se abre WhatsApp con su solicitud lista para INGCOL.</p>
+  </div>
+
+  <form class="tarjeta" id="form" novalidate>
+    <section class="bloque" aria-labelledby="t-servicio">
+      <h2 id="t-servicio"><i>1</i>¿Qué servicio necesita?</h2>
+      <fieldset>
+        <legend class="ayuda">Puede marcar varios.</legend>
+        <div class="chips grandes" id="servicios">
+          <label class="chip"><input type="checkbox" name="servicio" value="material"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19c2.2-6 5.4-9 9-9s6.8 3 9 9"></path><path d="M2 19h20"></path></svg>Suministro de material</span></label>
+          <label class="chip"><input type="checkbox" name="servicio" value="transporte"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h12v10H2z"></path><path d="M14 9h4.5L22 12.5V16h-8z"></path><circle cx="6.5" cy="17.5" r="2"></circle><circle cx="17.5" cy="17.5" r="2"></circle></svg>Transporte en volqueta</span></label>
+          <label class="chip"><input type="checkbox" name="servicio" value="maquinaria"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16.5V12h9.5v4.5z"></path><path d="M4 12V7.5h4.5l1.5 4.5"></path><path d="M11.5 13.5l4.5-6.5h2"></path><path d="M18 7l3.5 1.2-1 4H17.5z"></path><circle cx="5" cy="18.5" r="2"></circle><circle cx="10" cy="18.5" r="2"></circle></svg>Alquiler de maquinaria</span></label>
+          <label class="chip"><input type="checkbox" name="servicio" value="otro"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5a2.5 2.5 0 1 1 3.3 2.4c-.5.2-.8.6-.8 1.1v.5"></path><path d="M12 17h.01"></path></svg>Otro servicio</span></label>
+        </div>
+      </fieldset>
+
+      <div class="detalle" id="d-material" hidden>
+        <h3>Material</h3>
+        <fieldset>
+          <legend>¿Qué material?</legend>
+          <div class="chips" id="materiales">
+            <label class="chip"><input type="checkbox" name="material" value="Arena de río"><span>Arena de río</span></label>
+            <label class="chip"><input type="checkbox" name="material" value="Triturado (gravilla o grava)"><span>Triturado (gravilla o grava)</span></label>
+            <label class="chip"><input type="checkbox" name="material" value="Base granular"><span>Base granular</span></label>
+            <label class="chip"><input type="checkbox" name="material" value="Subbase granular"><span>Subbase granular</span></label>
+            <label class="chip"><input type="checkbox" name="material" value="Afirmado o recebo"><span>Afirmado o recebo</span></label>
+            <label class="chip"><input type="checkbox" name="material" value="Material seleccionado o para terraplén"><span>Material para terraplén</span></label>
+          </div>
+        </fieldset>
+        <div class="fila">
+          <div class="campo"><label for="m-cant">Cantidad aproximada</label><input id="m-cant" type="number" min="0" step="1" inputmode="numeric" placeholder="Ej. 60"></div>
+          <div class="campo"><label for="m-unidad">Unidad</label><select id="m-unidad"><option>m³</option><option>viajes</option><option>toneladas</option></select></div>
+        </div>
+        <fieldset>
+          <legend>¿Cómo lo recibe?</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="entrega" value="Puesto en la obra (con transporte)" checked><span>Puesto en la obra</span></label>
+            <label class="chip"><input type="radio" name="entrega" value="Lo recogemos en la planta"><span>Lo recogemos en la planta</span></label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="detalle" id="d-transporte" hidden>
+        <h3>Transporte en volqueta doble troque (15 m³)</h3>
+        <div class="campo"><label for="t-que">¿Qué va a transportar?</label><input id="t-que" placeholder="Ej. material de excavación, arena, escombro"></div>
+        <div class="dos">
+          <div class="campo"><label for="t-desde">Desde</label><input id="t-desde" placeholder="Lugar de cargue"></div>
+          <div class="campo"><label for="t-hasta">Hasta</label><input id="t-hasta" placeholder="Lugar de descargue"></div>
+        </div>
+        <div class="fila">
+          <div class="campo"><label for="t-cant">Cantidad aproximada</label><input id="t-cant" type="number" min="0" step="1" inputmode="numeric" placeholder="Ej. 10"></div>
+          <div class="campo"><label for="t-unidad">Unidad</label><select id="t-unidad"><option>viajes</option><option>m³</option></select></div>
+        </div>
+      </div>
+
+      <div class="detalle" id="d-maquinaria" hidden>
+        <h3>Maquinaria</h3>
+        <fieldset>
+          <legend>¿Qué máquina?</legend>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="maquina" value="Retrocargador"><span>Retrocargador</span></label>
+            <label class="chip"><input type="checkbox" name="maquina" value="Minicargador"><span>Minicargador</span></label>
+          </div>
+        </fieldset>
+        <div class="fila">
+          <div class="campo"><label for="q-tiempo">Tiempo aproximado</label><input id="q-tiempo" type="number" min="0" step="1" inputmode="numeric" placeholder="Ej. 8"></div>
+          <div class="campo"><label for="q-unidad">Unidad</label><select id="q-unidad"><option>horas</option><option>días</option></select></div>
+        </div>
+        <div class="campo"><label for="q-trabajo">Trabajo a realizar</label><input id="q-trabajo" placeholder="Ej. excavación, cargue, nivelación, limpieza"></div>
+      </div>
+
+      <div class="detalle" id="d-otro" hidden>
+        <h3>Otro servicio</h3>
+        <div class="campo"><label for="o-texto">Cuéntenos qué necesita</label><textarea id="o-texto" rows="2"></textarea></div>
+      </div>
+    </section>
+
+    <section class="bloque" aria-labelledby="t-obra">
+      <h2 id="t-obra"><i>2</i>Sobre la obra</h2>
+      <div class="campo"><label for="obra-lugar">Municipio o sitio de la obra</label><input id="obra-lugar" list="municipios" placeholder="Ej. Maicao, vía a Paraguachón">
+        <datalist id="municipios"><option value="Riohacha"></option><option value="Maicao"></option><option value="Uribia"></option><option value="Manaure"></option><option value="Dibulla"></option><option value="Albania"></option><option value="Barrancas"></option><option value="Hatonuevo"></option><option value="Fonseca"></option><option value="Distracción"></option><option value="San Juan del Cesar"></option><option value="Villanueva"></option></datalist>
+      </div>
+      <fieldset>
+        <legend>Tipo de obra</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="tipo" value="Vía o pavimento"><span>Vía o pavimento</span></label>
+          <label class="chip"><input type="radio" name="tipo" value="Vivienda o edificación"><span>Vivienda o edificación</span></label>
+          <label class="chip"><input type="radio" name="tipo" value="Acueducto o alcantarillado"><span>Acueducto o alcantarillado</span></label>
+          <label class="chip"><input type="radio" name="tipo" value="Relleno o terraplén"><span>Relleno o terraplén</span></label>
+          <label class="chip"><input type="radio" name="tipo" value="Otra"><span>Otra</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>¿Es un contrato con una entidad pública?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="publico" value="Sí"><span>Sí</span></label>
+          <label class="chip"><input type="radio" name="publico" value="No"><span>No</span></label>
+          <label class="chip"><input type="radio" name="publico" value="No sé"><span>No sé</span></label>
+        </div>
+      </fieldset>
+      <div class="campo" id="d-contrato" hidden><label for="contrato">Entidad o número del contrato</label><input id="contrato" placeholder="Opcional. Ej. Alcaldía de Maicao, contrato 045 de 2026"></div>
+      <fieldset>
+        <legend>¿Para cuándo lo necesita?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="cuando" value="Esta semana"><span>Esta semana</span></label>
+          <label class="chip"><input type="radio" name="cuando" value="Este mes"><span>Este mes</span></label>
+          <label class="chip"><input type="radio" name="cuando" value="Más adelante"><span>Más adelante</span></label>
+          <label class="chip"><input type="radio" name="cuando" value="fecha"><span>Fecha exacta</span></label>
+        </div>
+      </fieldset>
+      <div class="campo" id="d-fecha" hidden><label for="fecha">Fecha</label><input id="fecha" type="date"></div>
+      <fieldset>
+        <legend>¿Por cuánto tiempo?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="duracion" value="Una sola vez"><span>Una sola vez</span></label>
+          <label class="chip"><input type="radio" name="duracion" value="Durante toda la obra"><span>Durante toda la obra</span></label>
+        </div>
+      </fieldset>
+    </section>
+
+    <section class="bloque" aria-labelledby="t-datos">
+      <h2 id="t-datos"><i>3</i>Sus datos</h2>
+      <div class="campo"><label for="nombre">Nombre o empresa</label><input id="nombre" autocomplete="organization" required></div>
+      <div class="dos">
+        <div class="campo"><label for="persona">Persona de contacto</label><input id="persona" autocomplete="name" placeholder="Opcional"></div>
+        <div class="campo"><label for="correo">Correo</label><input id="correo" type="email" autocomplete="email" inputmode="email" placeholder="Opcional"></div>
+      </div>
+      <div class="campo"><label for="nota">Comentarios o detalles</label><textarea id="nota" rows="3" placeholder="Opcional. Ej. acceso para volqueta, horario de descargue"></textarea></div>
+      <div class="campo"><label for="codigo">Código de maestro</label><input id="codigo" autocomplete="off" placeholder="Opcional: si un maestro de obra le recomendó INGCOL"></div>
+    </section>
+
+    <p class="error" id="error" role="alert" hidden></p>
+    <div class="envios">
+      <a class="boton principal" id="enviar" href="https://wa.me/573114885119" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"></path><path d="M22 2 15 22l-4-9-9-4 20-7Z"></path></svg>
+        Enviar por WhatsApp
+      </a>
+      <a class="boton correo" id="enviar-correo" href="mailto:gerencia.ingcolsas@gmail.com">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3.5 6.5 8.5 6.5 8.5-6.5"></path></svg>
+        Enviar por correo
+      </a>
+    </div>
+    <p class="aviso-datos">Sus datos solo se usan para responder esta cotización.</p>
+  </form>
+
+  <footer class="pie">
+    <span><b>INGCOL S.A.S. ZOMAC</b> · Riohacha · La Florida, vía a Cuestecitas</span>
+    <span>WhatsApp <b>311 488 5119</b> · gerencia.ingcolsas@gmail.com</span>
+    <span><a href="https://brochure-ingcol.onrender.com/" target="_blank" rel="noopener">Ver el brochure 2026</a></span>
+  </footer>
+</main>
+
+<script>
+(function () {
+  const TEL = '573114885119';
+  const CORREO = 'gerencia.ingcolsas@gmail.com';
+  const $ = (id) => document.getElementById(id);
+  const marcados = (nombre) => [...document.querySelectorAll(`input[name="${nombre}"]:checked`)].map((i) => i.value);
+  const valor = (id) => $(id).value.trim();
+  const fechaBonita = (v) => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); return m ? `${m[3]}/${m[2]}/${m[1]}` : ''; };
+  const NOMBRES = { material: 'Suministro de material', transporte: 'Transporte en volqueta', maquinaria: 'Alquiler de maquinaria', otro: 'Otro servicio' };
+
+  // muestra solo las preguntas del servicio marcado
+  function mostrar() {
+    const s = marcados('servicio');
+    ['material', 'transporte', 'maquinaria', 'otro'].forEach((k) => { $('d-' + k).hidden = !s.includes(k); });
+    $('d-contrato').hidden = marcados('publico')[0] !== 'Sí';
+    $('d-fecha').hidden = marcados('cuando')[0] !== 'fecha';
+  }
+
+  // arma el mensaje con lo que respondió el cliente (en WhatsApp, *texto* sale en negrita)
+  function mensaje(negrita) {
+    const b = (t) => (negrita ? `*${t}:*` : `${t}:`);
+    const s = marcados('servicio');
+    const l = ['Hola INGCOL, quiero una cotización.', ''];
+    l.push(`${b('Servicio')} ${s.map((k) => NOMBRES[k]).join(', ') || 'por definir'}`);
+    if (s.includes('material')) {
+      const m = marcados('material'), cant = valor('m-cant');
+      l.push(`${b('Material')} ${m.join(', ') || 'por definir'}${cant ? ` · ${cant} ${$('m-unidad').value}` : ''} · ${marcados('entrega')[0] || ''}`);
+    }
+    if (s.includes('transporte')) {
+      const partes = [valor('t-que'), valor('t-desde') && `desde ${valor('t-desde')}`, valor('t-hasta') && `hasta ${valor('t-hasta')}`,
+        valor('t-cant') && `${valor('t-cant')} ${$('t-unidad').value}`].filter(Boolean);
+      l.push(`${b('Transporte')} ${partes.join(' · ') || 'por definir'}`);
+    }
+    if (s.includes('maquinaria')) {
+      const partes = [marcados('maquina').join(' y '), valor('q-tiempo') && `${valor('q-tiempo')} ${$('q-unidad').value}`, valor('q-trabajo')].filter(Boolean);
+      l.push(`${b('Maquinaria')} ${partes.join(' · ') || 'por definir'}`);
+    }
+    if (s.includes('otro') && valor('o-texto')) l.push(`${b('Otro servicio')} ${valor('o-texto')}`);
+    const obra = [valor('obra-lugar'), marcados('tipo')[0]].filter(Boolean);
+    if (obra.length) l.push(`${b('Obra')} ${obra.join(' · ')}`);
+    const pub = marcados('publico')[0];
+    if (pub) l.push(`${b('Contrato público')} ${pub}${pub === 'Sí' && valor('contrato') ? ` · ${valor('contrato')}` : ''}`);
+    const cuando = marcados('cuando')[0], dur = marcados('duracion')[0];
+    const tiempo = [cuando === 'fecha' ? fechaBonita($('fecha').value) : cuando, dur].filter(Boolean);
+    if (tiempo.length) l.push(`${b('Para cuándo')} ${tiempo.join(' · ')}`);
+    l.push('');
+    l.push(`${b('Nombre o empresa')} ${valor('nombre')}`);
+    if (valor('persona')) l.push(`${b('Contacto')} ${valor('persona')}`);
+    if (valor('correo')) l.push(`${b('Correo')} ${valor('correo')}`);
+    if (valor('nota')) l.push(`${b('Comentarios')} ${valor('nota')}`);
+    if (valor('codigo')) l.push(`${b('Código de maestro')} ${valor('codigo')}`);
+    l.push('', '(Enviado desde el formulario de cotización de INGCOL)');
+    return l.join('\n');
+  }
+
+  function actualizar() {
+    mostrar();
+    $('enviar').href = 'https://wa.me/' + TEL + '?text=' + encodeURIComponent(mensaje(true));
+    const asunto = 'Solicitud de cotización' + (valor('nombre') ? ': ' + valor('nombre') : '');
+    $('enviar-correo').href = 'mailto:' + CORREO + '?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(mensaje(false));
+  }
+
+  function falta(texto, enfoque) {
+    const e = $('error'); e.textContent = texto; e.hidden = false;
+    if (enfoque) { if (enfoque.id === 'nombre') enfoque.setAttribute('aria-invalid', 'true'); enfoque.focus(); enfoque.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+  }
+  function validar(ev) {
+    actualizar();
+    if (!marcados('servicio').length) { ev.preventDefault(); falta('Marque qué servicio necesita.', document.querySelector('input[name="servicio"]')); return; }
+    if (!valor('nombre')) { ev.preventDefault(); falta('Escriba su nombre o el de su empresa.', $('nombre')); return; }
+    $('error').hidden = true;
+  }
+
+  $('form').addEventListener('input', () => {
+    actualizar();
+    if (valor('nombre')) $('nombre').removeAttribute('aria-invalid');
+    if (!$('error').hidden && marcados('servicio').length && valor('nombre')) $('error').hidden = true;
+  });
+  $('form').addEventListener('change', actualizar);
+  $('form').addEventListener('submit', (e) => { e.preventDefault(); $('enviar').click(); });
+  $('enviar').addEventListener('click', validar);
+  $('enviar-correo').addEventListener('click', validar);
+
+  // si el enlace trae ?material, ?transporte o ?maquinaria, ese servicio llega marcado
+  const q = location.search.toLowerCase();
+  ['material', 'transporte', 'maquinaria'].forEach((k) => { if (q.includes(k)) document.querySelector(`input[name="servicio"][value="${k}"]`).checked = true; });
+  actualizar();
+})();
+</script>
+</body>
+</html>
